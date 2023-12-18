@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="col-20">
+    <!-- <div class="col-20">
       <div class="custom-select">
         <select v-model="userType">
           <option value="customer">Customer</option>
@@ -14,31 +14,37 @@
       <button v-if="showRegistrationButton" @click="toggleFormType">
         {{ formType === 'login' ? 'Register' : 'Login' }}
       </button>
+    </div> -->
+
+    <div class="image-container">
+      <img src="../assets/facebook.png" alt="facebook-image" />
+    </div>
+    <div class="button-container">
+      <button class="facebook-btn">Login with facebook</button>
     </div>
   </div>
 </template>
-  
+
 <script>
-import LoginForm from '@/components/LoginForm.vue';
-import { ref, computed } from 'vue';
-import useUserStore from '@/stores/UserStore';
+// import LoginForm from '@/components/LoginForm.vue';
+import { ref, computed } from "vue";
+import useUserStore from "@/stores/UserStore";
 
 export default {
-  components: {
-    LoginForm,
-  },
+  // components: {
+  //   LoginForm,
+  // },
   setup() {
-    const userStore = useUserStore()
-    const userType = ref('customer');
-    const formType = ref('login');
-  
+    const userStore = useUserStore();
+    const userType = ref("customer");
+    const formType = ref("login");
+
     const showRegistrationButton = computed(() => {
       return true;
     });
 
     const toggleFormType = () => {
-      formType.value = formType.value === 'login' ? 'register' : 'login';
-
+      formType.value = formType.value === "login" ? "register" : "login";
     };
 
     return {
@@ -46,23 +52,38 @@ export default {
       formType,
       showRegistrationButton,
       toggleFormType,
-      userStore
+      userStore,
     };
   },
 };
-
 </script>
- 
+
 <style scoped>
 .container {
+  height: 350px;
   border-radius: 5px;
-  padding: 20px;
-  width: 90%;
-  margin: 0 auto;
+  width: 50%;
+  margin: 50px auto;
+  margin-bottom: 100px;
   padding: 20px;
   /* border: 1px solid #ccc; */
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.image-container {
+  height: 100px;
+  width: 100px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .col-25 {
@@ -78,7 +99,7 @@ export default {
 }
 
 button {
-  padding: 10px;
+  /* padding: 10px;
   background-color: #4caf50;
   color: #fff;
   border: none;
@@ -86,19 +107,22 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
 
-
   background-color: cornflowerblue;
   color: white;
   padding: 12px 20px;
   border: none;
-  width: 100px;
+  width: 200px;
   border-radius: 4px;
   cursor: pointer;
   margin-left: 50%;
-  margin-top: 25px;
+  margin-top: 25px; */
+
+  padding: 5px 10px;
+  margin-top: 20px;
 }
 
 button:hover {
   background-color: cornflowerblue;
+  color: white;
 }
 </style>
