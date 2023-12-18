@@ -7,13 +7,13 @@ export default defineComponent({
       signInWithFacebook();
     };
 
-    const signout = () => {
+    const signOut = () => {
       logOut();
     };
 
     return {
       signIn,
-      signout,
+      signOut,
     };
   },
 });
