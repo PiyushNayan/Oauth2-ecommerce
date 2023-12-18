@@ -5,7 +5,7 @@
     <h2>Your Order</h2>
     <div v-if="loadingCart">Loading...</div>
     <div v-else>
-      <div v-for="item in cart?.resultData" :key="item.cartId">
+      <div v-for="item in orderResponse" :key="item.orderId">
         <!-- <div class="card"> -->
         <div class="card-body-button">
           <img
@@ -138,6 +138,28 @@ export default {
     const removeFromCart = (product) => {
       console.log(product);
     };
+
+    const orderResponse = ref(null);
+
+    const FETCH_ORDER = async () => {
+      // const
+      //   const head = {
+      //     // mode: 'no-cors',
+      //     method: 'POST',
+      //     body: JSON.stringify(orderDto),
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //   }
+      const res = await fetch("http://10.20.3.105:9002/orders/orders");
+      const data = await res.json();
+      console.log(data);
+      orderResponse.value = data.resultData;
+      console.log("Order Response", orderResponse.value);
+    };
+
+    FETCH_ORDER();
+
     const placeOrder = () => {
       try {
         const itemList = [];
@@ -231,6 +253,8 @@ export default {
       maxQuantity,
       quantity,
       updateTotal,
+      FETCH_ORDER,
+      orderResponse,
     };
   },
 };
