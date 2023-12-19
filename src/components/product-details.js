@@ -1,5 +1,7 @@
-import { ref, computed, reactive } from "vue";
-import Mycart from "../views/MyCart.vue";
+
+import { ref, computed, reactive, watch } from "vue";
+import Mycart from '../views/MyCart.vue'
+
 import useProductStore from "@/stores/ProductStore";
 import useCartStore from "@/stores/OrderAndCartStore";
 import ShowMultiPeople from "@/components/ShowMultiPeople";
@@ -12,6 +14,7 @@ export default {
   setup() {
     const productStore = useProductStore();
     const cartStore = useCartStore();
+    const recomRef = ref(null)
 
     const currentProduct = computed(() => productStore.currentProduct);
     // productStore.FETCH_PRODUCT_BY_ID();
@@ -19,6 +22,47 @@ export default {
     //   console.log("received", productStore.currentProduct.value)
     //   return productStore.currentProduct
     // })
+
+
+
+    watch(
+      () => currentProduct.value,
+      async (newCurrentProduct, oldCurrentProduct) => {
+        try {
+          console.log(oldCurrentProduct);
+          const productId = newCurrentProduct.productId;
+
+          if (sessionStorage.getItem("userId")) {
+            await get_suggestion(sessionStorage.getItem("userId"), productId);
+          }
+        } catch (error) {
+          console.error("Error in watch function:", error.message);
+          // Handle the error or log it as needed
+        }
+      }
+    );
+
+    const get_suggestion = async (currentUserId, productId) => {
+      try {
+        const url = `http://172.20.10.5:9002/api/recommendations/${currentUserId}/friends/bought/${productId}`;
+
+        const res = await fetch(url);
+
+        if (!res.ok) {
+          throw new Error(`Failed to fetch data. Status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        recomRef.value = data;
+        console.log("RESPONSE FROM RECOM", data);
+      } catch (error) {
+        console.error("Error fetching data:", error.message);
+        // Handle the error or log it as needed
+      }
+    };
+
+    // get_suggestion("kjik", currentProduct.value.productId);
+
 
     const merchants = ref([
       {
@@ -88,10 +132,12 @@ export default {
         },
       };
 
-      console.log(orderDto);
-      const res = await fetch("http://10.20.3.163:9002/orders/add", head);
-      console.log(res);
-    };
+      console.log(orderDto)
+      const res = await fetch("http://172.20.10.5:9002/orders/add", head)
+      console.log(res)
+    }
+
+
     return {
       addToCart,
       buyNow,

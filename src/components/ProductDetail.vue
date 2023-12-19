@@ -49,7 +49,7 @@
         </div>
       </div>
       <div>
-        <ShowMultiPeople/>
+        <ShowMultiPeople :recomm="recomRef" />
       </div>
     </div>
 
