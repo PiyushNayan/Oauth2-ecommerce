@@ -1,5 +1,7 @@
 <template>
   <!-- {{ currentProduct }} -->
+
+  {{ recomRef }}
   <div class="details">
     <div class="section-details">
       <div class="product-image">
@@ -18,17 +20,16 @@
             <br />
             <br />
 
-
-      Price: <b> Rs {{ selectedMerchant.value.price }} </b>
-      <br>
-      <br>
-      <!-- <div class="quantity-container">Qty:   <button class="quantity-btn" @click="decrease">-</button>
+            Price: <b> Rs {{ selectedMerchant.value.price }} </b>
+            <br />
+            <br />
+            <!-- <div class="quantity-container">Qty:   <button class="quantity-btn" @click="decrease">-</button>
           <input class="quantity-input" type="text" v-model="quantity" id="quantity" readonly>
           <button class="quantity-btn" @click="increase">+</button>
         </div>
   -->
-    </div>
-    </div>
+          </div>
+        </div>
 
         <!-- <p>Color: {{ product.color }}</p> -->
 
@@ -49,19 +50,15 @@
         </div>
       </div>
       <div>
-        <ShowMultiPeople/>
+        <!-- <ShowMultiPeople :recomm="recomRef" /> -->
       </div>
     </div>
-
-   
-
   </div>
 </template>
 
 <script src="@/components/product-details.js"></script>
 
 <style scoped>
-
 * {
   box-sizing: border-box;
   margin: 0 auto;
@@ -128,13 +125,11 @@
 /* }  */
 
 .section-details {
-
-    margin-bottom: 50px;
-    display: flex;
-    justify-content: space-evenly;
-    height: 500px;
-    width: 100%;
-
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  height: 500px;
+  width: 100%;
 }
 .pname {
   font-size: 40px;
@@ -155,14 +150,9 @@
   transition: box-shadow 0.3s ease; */
 }
 
- 
- 
- 
-
 .product-image img:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
-
 
 .hover-image {
   width: 100%;

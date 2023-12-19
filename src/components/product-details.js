@@ -1,12 +1,13 @@
-import { ref, computed, reactive } from "vue";
+import { ref, computed, reactive,watch } from "vue";
 import Mycart from '../views/MyCart.vue'
 import useProductStore from "@/stores/ProductStore";
 import useCartStore from "@/stores/OrderAndCartStore";
 import ShowMultiPeople from "@/components/ShowMultiPeople";
-export default {
+export default{
   components: {
-    Mycart,ShowMultiPeople
+    Mycart, ShowMultiPeople
   },
+   
 
   setup() {
 
@@ -14,11 +15,26 @@ export default {
     const cartStore = useCartStore();
 
     const currentProduct = computed(() => productStore.currentProduct)
-    // productStore.FETCH_PRODUCT_BY_ID();
-    // const currentProduct = computed(() => {
-    //   console.log("received", productStore.currentProduct.value)
-    //   return productStore.currentProduct
-    // })
+    const recomRef = ref(null)
+
+
+    // const get_rec_com = async (currentUserId, productId) => {
+
+    //   const url = `http://10.20.3.163:9002/api/recommendations/${currentUserId}/friends/bought/${productId}`
+    //   const res = await fetch(url)
+    //   const data = await res.json();
+    //   recomRef.value = data
+    //   console.log("RESPONSE FROM RECOM", data)
+    // }
+    watch(
+      () => currentProduct.value,
+      (newCurrentProduct, oldCurrentProduct) => {
+        console.log(oldCurrentProduct)
+        // const productId = newCurrentProduct.productId;
+        // get_rec_com("kjjk", productId);
+      }
+    );
+    // get_rec_com("kjik", currentProduct.value.productId);
 
 
     const merchants = ref([
@@ -92,7 +108,7 @@ export default {
       }
 
       console.log(orderDto)
-      const res = await fetch("http://10.20.3.105:9002/orders/add", head)
+      const res = await fetch("http://10.20.3.163:9002/orders/add", head)
       console.log(res)
     }
     return {
@@ -104,7 +120,7 @@ export default {
       increase,
       decrease, selectMerchant, quantity,
       selectedMerchant,
-
+      recomRef
     };
   },
 };
