@@ -8,13 +8,13 @@ const useRootStore = defineStore('product', () => {
     const products = reactive({value:{}})
     const currentProduct = ref(null)
     const FETCH_PRODUCTS = async () => {
-        const res = await fetch("http://localhost:9887/product/products")
+        const res = await fetch("http://10.20.3.163:9887/product/products")
         const parsedResponse = await res.json()
         
         products.value = { ...parsedResponse }
     }
     const FETCH_PRODUCT_BY_ID= async (productId) => {
-        const res = await fetch(`http://localhost:9887/product/${productId}`)
+        const res = await fetch(`http://10.20.3.163:9887/product/${productId}`)
         const parsedResponse = await res.json()
         
         currentProduct.value = parsedResponse.resultData
