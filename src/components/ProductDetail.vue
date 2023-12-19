@@ -18,22 +18,18 @@
             <br />
             <br />
 
-            Price: <b> Rs {{ selectedMerchant.value.price }} </b>
-            <br />
-            <br />
-            <div class="quantity-container">
-              Qty: <button class="quantity-btn" @click="decrease">-</button>
-              <input
-                class="quantity-input"
-                type="text"
-                v-model="quantity"
-                id="quantity"
-                readonly
-              />
-              <button class="quantity-btn" @click="increase">+</button>
-            </div>
-          </div>
+
+      Price: <b> Rs {{ selectedMerchant.value.price }} </b>
+      <br>
+      <br>
+      <!-- <div class="quantity-container">Qty:   <button class="quantity-btn" @click="decrease">-</button>
+          <input class="quantity-input" type="text" v-model="quantity" id="quantity" readonly>
+          <button class="quantity-btn" @click="increase">+</button>
         </div>
+  -->
+    </div>
+    </div>
+
         <!-- <p>Color: {{ product.color }}</p> -->
 
         <!-- <div class="dropdown">
@@ -48,17 +44,24 @@
         </div> -->
 
         <div class="buttons">
-          <button @click="addToCart">Add to Cart</button>
+          <!-- <button @click="addToCart">Add to Cart</button> -->
           <button @click="buyNow">Buy Now</button>
         </div>
       </div>
+      <div>
+        <ShowMultiPeople/>
+      </div>
     </div>
+
+   
+
   </div>
 </template>
 
 <script src="@/components/product-details.js"></script>
 
 <style scoped>
+
 * {
   box-sizing: border-box;
   margin: 0 auto;
@@ -125,12 +128,13 @@
 /* }  */
 
 .section-details {
-  padding: 20px;
-  /* background-color: aqua; */
-  display: flex;
-  justify-content: space-evenly;
-  height: 500px;
-  /* width: 100%; */
+
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    height: 500px;
+    width: 100%;
+
 }
 .pname {
   font-size: 40px;
@@ -147,12 +151,18 @@
   margin-left: 10%;
   height: 100%;
 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease; */
 }
+
+ 
+ 
+ 
+
 .product-image img:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
+
 
 .hover-image {
   width: 100%;

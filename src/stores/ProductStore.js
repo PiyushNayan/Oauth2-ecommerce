@@ -1,31 +1,33 @@
 
 import { defineStore } from "pinia"
-import { reactive, ref } from "vue"
+
+import { reactive,ref} from "vue"
+
+const useRootStore = defineStore('product', () => {
+
+    // const userRole = ref('customer')
+    
+    const products = reactive({value:{}})
+    const currentProduct = ref(null)
+    const FETCH_PRODUCTS = async () => {
+        const res = await fetch("http://10.20.3.163:9887/product/products")
+        const parsedResponse = await res.json()
+        
+        products.value = { ...parsedResponse }
+    }
+    const FETCH_PRODUCT_BY_ID= async (productId) => {
+        const res = await fetch(`http://10.20.3.163:9887/product/${productId}`)
+        const parsedResponse = await res.json()
+        
+        currentProduct.value = parsedResponse.resultData
+        console.log("productById",currentProduct.value)
+    }
+    const updateCurrentProduct = (productItem)=>{
+        console.log("currentProduct",productItem)
+        currentProduct.value = productItem;
+    }
 
 
-
-const useRootStore = defineStore("product", () => {
-  // const userRole = ref('customer')
-
-  const products = reactive({ value: {} });
-  const currentProduct = ref(null);
-  const FETCH_PRODUCTS = async () => {
-    const res = await fetch("http://10.20.3.163:9887/product/products");
-    const parsedResponse = await res.json();
-
-    products.value = { ...parsedResponse };
-  };
-  const FETCH_PRODUCT_BY_ID = async (productId) => {
-    const res = await fetch(`http://10.20.3.163:9887/product/${productId}`);
-    const parsedResponse = await res.json();
-
-    currentProduct.value = parsedResponse.resultData;
-    console.log("productById", currentProduct.value);
-  };
-  const updateCurrentProduct = (productItem) => {
-    console.log("currentProduct", productItem);
-    currentProduct.value = productItem;
-  };
 
   // onMounted()
   // const FETCH_PRODUCTS = async () => {
@@ -46,8 +48,6 @@ const useRootStore = defineStore("product", () => {
   //     products.value = { ...parsedResponse }
   //     console.log("products",products.value)
   // }
-
-
 
 
     return {

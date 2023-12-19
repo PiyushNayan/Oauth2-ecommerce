@@ -2,9 +2,10 @@ import { ref, computed, reactive } from "vue";
 import Mycart from '../views/MyCart.vue'
 import useProductStore from "@/stores/ProductStore";
 import useCartStore from "@/stores/OrderAndCartStore";
+import ShowMultiPeople from "@/components/ShowMultiPeople";
 export default {
   components: {
-    Mycart
+    Mycart,ShowMultiPeople
   },
 
   setup() {
