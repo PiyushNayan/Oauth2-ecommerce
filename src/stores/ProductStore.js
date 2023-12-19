@@ -1,4 +1,6 @@
+
 import { defineStore } from "pinia"
+
 import { reactive,ref} from "vue"
 
 const useRootStore = defineStore('product', () => {
@@ -25,52 +27,29 @@ const useRootStore = defineStore('product', () => {
         currentProduct.value = productItem;
     }
 
-    // onMounted()
-    // const FETCH_PRODUCTS = async () => {
-    //     const res = await fetch("http://localhost:9887/product/products",{
-    //         mode: 'no-cors',    
-    //         method: "GET",
-    //         // body: JSON.stringify({
-    //         //     userId: 1,
-    //         //     title: "Fix my bugs",
-    //         //     completed: false
-    //         // }),
-    //         headers: {
-    //             "Content-type": "application/json; charset=UTF-8"
-    //         }
-    //     })
-    //     const parsedResponse = await res.json()
-        
-    //     products.value = { ...parsedResponse }
-    //     console.log("products",products.value)
-    // }
 
-    // const orders = reactive({value:{}})
-    // const FETCH_ORDERS = async () => {
-    //     const res = await fetch("https://jsonplaceholder.typicode.com/todos/1")
-    //     const parsedResponse = await res.json()
-    //     products.value = { ...parsedResponse }
-    // }
 
-    // const cart = reactive({value:{}})
-    // const FETCH_CART = async () => {
-    //     const res = await fetch("http://localhost:8090/cart/getCartById/abc%40xyz.com")
-    //     const parsedResponse = await res.json()
-    //     cart.value = { ...parsedResponse }
-    // }
+  // onMounted()
+  // const FETCH_PRODUCTS = async () => {
+  //     const res = await fetch("http://10.20.3.163:9887/product/products",{
+  //         mode: 'no-cors',
+  //         method: "GET",
+  //         // body: JSON.stringify({
+  //         //     userId: 1,
+  //         //     title: "Fix my bugs",
+  //         //     completed: false
+  //         // }),
+  //         headers: {
+  //             "Content-type": "application/json; charset=UTF-8"
+  //         }
+  //     })
+  //     const parsedResponse = await res.json()
 
-    // const productMerchants = reactive({value:{}})
-    // const FETCH_MERCHANTS_OF_PRODUCT = async () => {
-    //     const res = await fetch("https://jsonplaceholder.typicode.com/todos/1")
-    //     const parsedResponse = await res.json()
-    //     products.value = { ...parsedResponse }
-    // }
+  //     products.value = { ...parsedResponse }
+  //     console.log("products",products.value)
+  // }
 
-//    const updateRole = (role)=>{
-//     user.value = role;
-//    }
 
-  
     return {
         FETCH_PRODUCTS,
         // FETCH_ORDERS,
@@ -85,8 +64,10 @@ const useRootStore = defineStore('product', () => {
         // cart
         // userRole,
         // updateRole
-     
+
     }
 })
 export default useRootStore
 
+
+ 
