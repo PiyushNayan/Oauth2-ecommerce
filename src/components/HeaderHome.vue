@@ -20,6 +20,7 @@
 
     <nav class="nav-links">
       <router-link to="/order" class="order-cart1"
+
         ><img src="https://cdn-icons-png.flaticon.com/128/9422/9422789.png"
       /></router-link>
       <router-link to="/mycart" class="order-cart2">
@@ -44,6 +45,7 @@
     <router-link to="/login" class="login-button">
       <button @click="authChange">{{ authStatus ? "LOGOUT" : "LOGIN" }}</button>
     </router-link>
+
   </div>
 
   <!-- <button v-if="isLoggedIn" @click="logout">Logout</button>
