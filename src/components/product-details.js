@@ -1,59 +1,55 @@
 import { ref, computed, reactive } from "vue";
-import Mycart from '../views/MyCart.vue'
+import Mycart from "../views/MyCart.vue";
 import useProductStore from "@/stores/ProductStore";
 import useCartStore from "@/stores/OrderAndCartStore";
 import ShowMultiPeople from "@/components/ShowMultiPeople";
 export default {
   components: {
-    Mycart, ShowMultiPeople
+    Mycart,
+    ShowMultiPeople,
   },
 
   setup() {
-
     const productStore = useProductStore();
     const cartStore = useCartStore();
 
-    const currentProduct = computed(() => productStore.currentProduct)
+    const currentProduct = computed(() => productStore.currentProduct);
     // productStore.FETCH_PRODUCT_BY_ID();
     // const currentProduct = computed(() => {
     //   console.log("received", productStore.currentProduct.value)
     //   return productStore.currentProduct
     // })
 
-    const buyNow = ()=>{
-      console.log("buyNow has been clicked");
-    }
     const merchants = ref([
       {
-        name: 'karan',
+        name: "karan",
         id: 1,
-        location: 'kota',
-        price: '200'
+        location: "kota",
+        price: "200",
       },
       {
-        name: 'kunal',
+        name: "kunal",
         id: 2,
-        location: 'bundi',
-        price: '400'
+        location: "bundi",
+        price: "400",
       },
       {
-        name: 'raj',
+        name: "raj",
         id: 3,
-        location: 'pune',
-        price: '200'
+        location: "pune",
+        price: "200",
       },
       {
-        name: 'rajiu',
+        name: "rajiu",
         id: 4,
-        location: 'pune',
-        price: '200'
-      }
-    ])
+        location: "pune",
+        price: "200",
+      },
+    ]);
     const addToCart = () => {
-      cartStore.ADD_TO_CART(currentProduct.value, 1)
-      alert("product has been added to cart")
-      console.log(currentProduct.value)
-
+      cartStore.ADD_TO_CART(currentProduct.value, 1);
+      alert("product has been added to cart");
+      console.log(currentProduct.value);
     };
     const quantity = ref(1);
     const increase = () => {
@@ -61,52 +57,51 @@ export default {
         quantity.value += 1;
       }
     };
-    const selectedMerchant = reactive({ value: { name: 'karan', id: 1, location: 'kota', price: '200' } })
+    const selectedMerchant = reactive({
+      value: { name: "karan", id: 1, location: "kota", price: "200" },
+    });
     const selectMerchant = (merchant) => {
-      console.log("Hello")
+      console.log("Hello");
       selectedMerchant.value = merchant;
-      console.log(selectedMerchant.value)
-
+      console.log(selectedMerchant.value);
     };
     const decrease = () => {
       if (quantity.value > 1) {
         quantity.value -= 1;
       }
-    }
-
-
+    };
 
     const buyNow = async () => {
-      // const 
+      // const
       const orderDto = {
         orderId: "afslhda",
         product: currentProduct.value,
         // userId: sessionStorage.getItem("userId")
-        userId: "aaaalllllfasdga"
-      }
+        userId: "aaaalllllfasdga",
+      };
       const head = {
         // mode: 'no-cors',
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(orderDto),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-      }
+      };
 
-      console.log(orderDto)
-      const res = await fetch("http://10.20.3.163:9002/orders/add", head)
-      console.log(res)
-    }
+      console.log(orderDto);
+      const res = await fetch("http://10.20.3.163:9002/orders/add", head);
+      console.log(res);
+    };
     return {
-
       addToCart,
       buyNow,
       merchants,
       currentProduct,
       increase,
-      decrease, selectMerchant, quantity,
+      decrease,
+      selectMerchant,
+      quantity,
       selectedMerchant,
-
     };
   },
 };
