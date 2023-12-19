@@ -1,5 +1,5 @@
 <template>
-  <!-- {{ currentProduct }} -->
+  {{ recomRef }}
   <div class="details">
     <div class="section-details">
       <div class="product-image">
@@ -11,24 +11,23 @@
         </div>
         <br />
         <p>{{ currentProduct?.productDescription }}</p>
-        <br />
-        <div class="merchantDetailsDp">
+        <!-- <br /> -->
+        <!-- <div class="merchantDetailsDp">
           <div v-if="selectedMerchant" class="btnn1">
             Selected Merchant: <b>{{ selectedMerchant.value.name }}</b>
             <br />
             <br />
 
-
-      Price: <b> Rs {{ selectedMerchant.value.price }} </b>
-      <br>
-      <br>
-      <!-- <div class="quantity-container">Qty:   <button class="quantity-btn" @click="decrease">-</button>
+            Price: <b> Rs {{ selectedMerchant.value.price }} </b>
+            <br />
+            <br /> -->
+        <!-- <div class="quantity-container">Qty:   <button class="quantity-btn" @click="decrease">-</button>
           <input class="quantity-input" type="text" v-model="quantity" id="quantity" readonly>
           <button class="quantity-btn" @click="increase">+</button>
         </div>
   -->
-    </div>
-    </div>
+        <!-- </div>
+        </div> -->
 
         <!-- <p>Color: {{ product.color }}</p> -->
 
@@ -52,16 +51,12 @@
         <ShowMultiPeople :recomm="recomRef" />
       </div>
     </div>
-
-   
-
   </div>
 </template>
 
 <script src="@/components/product-details.js"></script>
 
 <style scoped>
-
 * {
   box-sizing: border-box;
   margin: 0 auto;
@@ -87,10 +82,14 @@
   transition: background-color 0.3s ease;
   margin: 0 5px;
 }
-
-.quantity-btn:hover {
-  background-color: #555;
+.product-image img {
+  padding: 37px;
+  margin-left: -3%;
+  height: 100%;
 }
+/* .quantity-btn:hover {
+  background-color: #555;
+} */
 
 .quantity-input {
   width: 50px;
@@ -112,9 +111,9 @@
   margin-top: 10px;
 }
 
-.btnn:hover {
+/* .btnn:hover {
   background-color: #555;
-}
+} */
 
 /* @media only screen and (max-width: 480px){
 .section-details {
@@ -128,13 +127,11 @@
 /* }  */
 
 .section-details {
-
-    margin-bottom: 50px;
-    display: flex;
-    justify-content: space-evenly;
-    height: 500px;
-    width: 100%;
-
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  height: 500px;
+  width: 100%;
 }
 .pname {
   font-size: 40px;
@@ -146,29 +143,24 @@
   flex-direction: column;
 }
 
-.product-image img {
+/* .product-image img {
   padding: 15px;
   margin-left: 10%;
-  height: 100%;
+  height: 100%; */
 
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease; */
-}
+/* } */
 
- 
- 
- 
-
-.product-image img:hover {
+/* .product-image img:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
+} */
 
-
-.hover-image {
+/* .hover-image {
   width: 100%;
   height: auto;
   transition: transform 0.3s ease;
-}
+} */
 
 .product-image:hover {
   transform: scale(1.01);

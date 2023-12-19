@@ -74,6 +74,16 @@ const signInWithFacebook = () => {
 
       getFacebookFriends(accessToken);
       getFacebookProfileImage(result.user.uid);
+
+      
+      const userDto = {
+        friendList: [],
+        url: result.user.photoURL,
+        userId: result.user.uid,
+        userName: result.user.displayName
+      };
+
+       addUser(userDto);
       router.push("/");
 
       sessionStorage.setItem("accessToken", accessToken);
@@ -97,7 +107,20 @@ const signInWithFacebook = () => {
       // ...
     });
 };
+const addUser = async (userDto) => {
+  const head = {
+    method: "POST",
+    body: JSON.stringify(userDto),
+    headers: {
+      "Content-Type": "application/json",
+    }
+  }
 
+  const url = "http://172.20.10.5:9002/api/users/add"
+  const res = await fetch(url, head)
+  const data = await res.json();
+  console.log(data)
+}
 const logOut = () => {
   signOut(auth)
     .then(() => {
