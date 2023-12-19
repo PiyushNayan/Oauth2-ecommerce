@@ -19,7 +19,9 @@ export default {
     //   return productStore.currentProduct
     // })
 
-
+    const buyNow = ()=>{
+      console.log("buyNow has been clicked");
+    }
     const merchants = ref([
       {
         name: 'karan',
@@ -73,7 +75,7 @@ export default {
     return {
 
       addToCart,
-      // buyNow,
+      buyNow,
       merchants,
       currentProduct,
       increase,

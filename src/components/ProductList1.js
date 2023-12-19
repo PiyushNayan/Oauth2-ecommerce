@@ -8,7 +8,6 @@ import useCartStore  from '../stores/OrderAndCartStore.js';
     //   ProductDetail
     // },
 
-
     setup() {
         const router = useRouter()
         // const products = ref([])
@@ -54,9 +53,10 @@ import useCartStore  from '../stores/OrderAndCartStore.js';
           ])
       const addToCart = (product)=>{
         console.log("product Details",product)
-       cartStore.ADD_TO_CART(product,1)
-       alert("your order has been added to cart")
+        cartStore.ADD_TO_CART(product,1)
+        alert("your order has been added to cart")
       } 
+
       const isLoading = ref(true);
       const onItemClicked = (product)=>{
         console.log("This is clicked")
@@ -64,6 +64,7 @@ import useCartStore  from '../stores/OrderAndCartStore.js';
         // productStore.updateCurrentProduct(product);
         router.push("/productDetail")
       }
+
       const loadProducts = () => {
         isLoading.value = true; 
         setTimeout(() => {
