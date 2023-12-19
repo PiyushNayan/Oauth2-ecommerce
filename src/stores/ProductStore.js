@@ -9,6 +9,7 @@ const useRootStore = defineStore('product', () => {
     
     const products = reactive({value:{}})
     const currentProduct = ref(null)
+
     const FETCH_PRODUCTS = async () => {
         const res = await fetch("http://10.20.3.163:9887/product/products")
         const parsedResponse = await res.json()
