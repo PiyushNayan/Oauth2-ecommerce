@@ -42,6 +42,22 @@ function getFacebookFriends(token) {
     })
     .catch((error) => console.error("Error fetching friends:", error));
 }
+function getFacebookProfileImage(userId) {
+  var url = `https://graph.facebook.com/${userId}/picture`;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.error) {
+        console.error("Error retrieving friends:", data.error);
+      } else {
+        var friends = data.data;
+        // Process the list of friends
+        console.log("profile", friends);
+      }
+    })
+    .catch((error) => console.error("Error fetching friends:", error));
+}
 const signInWithFacebook = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
@@ -57,6 +73,7 @@ const signInWithFacebook = () => {
       console.log("credential", credential);
 
       getFacebookFriends(accessToken);
+      getFacebookProfileImage(result.user.uid);
       router.push("/");
 
       sessionStorage.setItem("accessToken", accessToken);
