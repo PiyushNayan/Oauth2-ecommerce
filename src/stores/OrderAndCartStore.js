@@ -10,7 +10,7 @@ const useCartStore = defineStore("orderCart", () => {
 
   const FETCH_ORDERS = async (cartId) => {
     try {
-      const apiUrl = "http://10.20.3.163:8090/order/getAllOrdersById";
+      const apiUrl = "http://172.20.10.5:9002/order/getAllOrdersById";
       const queryParams = new URLSearchParams();
       queryParams.set("cartId", cartId);
 
@@ -64,7 +64,7 @@ const useCartStore = defineStore("orderCart", () => {
       },
     };
     console.log(head);
-    const res = await fetch("http://10.20.3.163:8090/order/placeOrder", head);
+    const res = await fetch("http://172.20.10.5:9002/order/placeOrder", head);
 
     const parsedResponse = await res.json();
     console.log("order placed", parsedResponse);
