@@ -5,7 +5,7 @@ import useCartStore from "@/stores/OrderAndCartStore";
 import ShowMultiPeople from "@/components/ShowMultiPeople";
 export default {
   components: {
-    Mycart,ShowMultiPeople
+    Mycart, ShowMultiPeople
   },
 
   setup() {
@@ -92,7 +92,7 @@ export default {
       }
 
       console.log(orderDto)
-      const res = await fetch("http://10.20.3.105:9002/orders/add", head)
+      const res = await fetch("http://10.20.3.163:9002/orders/add", head)
       console.log(res)
     }
     return {
