@@ -3,9 +3,13 @@ import MyOrders from '../views/MyOrders.vue'
 import Mycart from '../views/MyCart.vue'
 import ProductList1 from '../components/ProductList1.vue'
 import ProductDetail from "../components/ProductDetail.vue"
-// import LoginParent from "../components/LoginParent.vue"
-import about  from '../views/AboutPage.vue'
+
+import LoginParent from "../components/LoginParent.vue"
+import about from '../views/AboutPage.vue'
+import OrderPage from "../components/OrderPage.vue"
+
 import fbLogin from '../components/FbLogin.vue'
+
 
 
 const routes = [
@@ -38,6 +42,10 @@ const routes = [
     path: '/about',
     name: 'about',
     component: about
+  }, {
+    path: '/order',
+    name: 'order',
+    component: OrderPage
   }
 
 ]

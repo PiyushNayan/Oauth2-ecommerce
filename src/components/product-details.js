@@ -1,4 +1,4 @@
-import { ref, computed,reactive } from "vue";
+import { ref, computed, reactive } from "vue";
 import Mycart from '../views/MyCart.vue'
 import useProductStore from "@/stores/ProductStore";
 import useCartStore from "@/stores/OrderAndCartStore";
@@ -11,8 +11,8 @@ export default {
 
     const productStore = useProductStore();
     const cartStore = useCartStore();
-    
-    const currentProduct = computed(()=>productStore.currentProduct)
+
+    const currentProduct = computed(() => productStore.currentProduct)
     // productStore.FETCH_PRODUCT_BY_ID();
     // const currentProduct = computed(() => {
     //   console.log("received", productStore.currentProduct.value)
@@ -47,39 +47,63 @@ export default {
       }
     ])
     const addToCart = () => {
-      cartStore.ADD_TO_CART(currentProduct.value,1)
+      cartStore.ADD_TO_CART(currentProduct.value, 1)
       alert("product has been added to cart")
       console.log(currentProduct.value)
-      
+
     };
-    const quantity = ref( 1 );
-  const increase = () => {
-    if (quantity.value < 50){
-      quantity.value += 1;
-    }
-  };
-  const selectedMerchant = reactive({value:{name: 'karan', id: 1, location: 'kota', price: '200'}})
+    const quantity = ref(1);
+    const increase = () => {
+      if (quantity.value < 50) {
+        quantity.value += 1;
+      }
+    };
+    const selectedMerchant = reactive({ value: { name: 'karan', id: 1, location: 'kota', price: '200' } })
     const selectMerchant = (merchant) => {
       console.log("Hello")
       selectedMerchant.value = merchant;
       console.log(selectedMerchant.value)
-  
-  };
-  const decrease = () => {
-    if (quantity.value > 1) {
-      quantity.value -= 1;
+
+    };
+    const decrease = () => {
+      if (quantity.value > 1) {
+        quantity.value -= 1;
+      }
     }
-  }
+
+
+
+    const buyNow = async () => {
+      // const 
+      const orderDto = {
+        orderId: "afslhda",
+        product: currentProduct.value,
+        // userId: sessionStorage.getItem("userId")
+        userId: "aaaalllllfasdga"
+      }
+      const head = {
+        // mode: 'no-cors',
+        method: 'POST',
+        body: JSON.stringify(orderDto),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+
+      console.log(orderDto)
+      const res = await fetch("http://10.20.3.105:9002/orders/add", head)
+      console.log(res)
+    }
     return {
 
       addToCart,
-      // buyNow,
+      buyNow,
       merchants,
       currentProduct,
       increase,
-      decrease,selectMerchant,quantity,
+      decrease, selectMerchant, quantity,
       selectedMerchant,
-      
+
     };
   },
 };
