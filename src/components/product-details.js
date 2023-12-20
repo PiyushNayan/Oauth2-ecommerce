@@ -57,7 +57,13 @@ export default {
 
         const data = await res.json();
         recomRef.value = data;
-        console.log("RESPONSE FROM RECOM", data);
+        console.log("RESPONSE FROM RECOM", recomRef.value);
+
+        recomRef.value = recomRef.value.filter((value, index, self) => 
+          index === self.findIndex(item => item.userId === value.userId)
+        );
+
+        recomRef.value = recomRef.value.filter(item => item.userId !== sessionStorage.getItem("userId"));
       } catch (error) {
         console.error("Error fetching data:", error.message);
         // Handle the error or log it as needed

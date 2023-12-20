@@ -26,9 +26,11 @@ export default {
   },
   setup(){
     const authStore = userAuthStore()
-    const userEmail = sessionStorage.getItem("userEmail")
+    const userId = sessionStorage.getItem("userId")
+    if(userId){
+      authStore.updateAuthStatus(userId)
+    }
     
-    authStore.updateAuthStatus(userEmail)
   
     // return{
       

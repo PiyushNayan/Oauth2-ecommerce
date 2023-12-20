@@ -1,5 +1,5 @@
 <template>
-  {{ recomRef }}
+  <!-- {{ recomRef }} -->
   <div class="details">
     <div class="section-details">
       <div class="product-image">

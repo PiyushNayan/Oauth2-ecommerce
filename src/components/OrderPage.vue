@@ -141,7 +141,7 @@ export default {
 
     const orderResponse = ref(null);
 
-    const FETCH_ORDER = async () => {
+    const FETCH_ORDER = async (userId) => {
       // const
       //   const head = {
       //     // mode: 'no-cors',
@@ -151,14 +151,14 @@ export default {
       //       'Content-Type': 'application/json',
       //     },
       //   }
-      const res = await fetch("http://10.20.3.163:9002/orders/orders");
+      const res = await fetch(`http://10.20.3.163:9002/orders/getOrder/${userId}`);
       const data = await res.json();
       console.log(data);
       orderResponse.value = data.resultData;
       console.log("Order Response", orderResponse.value);
     };
 
-    FETCH_ORDER();
+    FETCH_ORDER(sessionStorage.getItem("userId"));
 
     const placeOrder = () => {
       try {

@@ -1,5 +1,5 @@
 <template>
-  {{ recommended }}
+  <!-- {{ recommended }} -->
   <div class="main-show-people-container">
     <div class="number-container" @click="toggleButton">
       <div v-if="imageLength == 1" class="sub-container">
@@ -17,7 +17,7 @@
           bought by {{ recommended[0]?.userName }}
         </div>
       </div>
-      <div v-else-if="imageLength == 2">
+      <div v-else-if="imageLength == 2" class="sub-container">
         <div
           class="profile-image image-one"
           :style="{ backgroundColor: getRandomColor() }"
@@ -131,11 +131,11 @@ export default defineComponent({
 }
 .profile-image {
   background-color: rgb(184, 125, 48);
-  width: 35px;
+  width: 46px;
   height: 35px;
   margin-left: -12px;
   position: relative;
-  border-radius: 50px;
+  border-radius: 50%;
 }
 
 .initial-overlay {
