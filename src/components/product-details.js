@@ -34,10 +34,10 @@ export default {
           console.log(oldCurrentProduct);
           const productId = newCurrentProduct.productId;
 
-          // if (sessionStorage.getItem("userId")) {
-          //   await get_suggestion(sessionStorage.getItem("userId"), productId);
-          await get_suggestion("9UWwAEYH1Qhxu9MRBUFKBzu6uii1", productId);
-          // }
+          if (sessionStorage.getItem("userId")) {
+            await get_suggestion(sessionStorage.getItem("userId"), productId);
+            // await get_suggestion("9UWwAEYH1Qhxu9MRBUFKBzu6uii1", productId);
+          }
         } catch (error) {
           console.error("Error in watch function:", error.message);
           // Handle the error or log it as needed
@@ -47,7 +47,7 @@ export default {
 
     const get_suggestion = async (currentUserId, productId) => {
       try {
-        const url = `http://172.20.10.5:9002/api/recommendations/${currentUserId}/friends/bought/${productId}`;
+        const url = `http://10.20.3.163:9002/api/recommendations/${currentUserId}/friends/bought/${productId}`;
 
         const res = await fetch(url);
 
@@ -158,7 +158,7 @@ export default {
 
         console.log("Order Details:", orderDto);
 
-        const response = await fetch("http://172.20.10.5:9002/orders/add", requestOptions);
+        const response = await fetch("http://10.20.3.163:9002/orders/add", requestOptions);
 
         if (!response.ok) {
           throw new Error(`Failed to place the order. Status: ${response.status}`);

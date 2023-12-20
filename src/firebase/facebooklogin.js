@@ -116,7 +116,7 @@ const addUser = async (userDto) => {
     }
   }
 
-  const url = "http://172.20.10.5:9002/api/users/add"
+  const url = "http://10.20.3.163:9002/api/users/add"
   const res = await fetch(url, head)
   const data = await res.json();
   console.log(data)

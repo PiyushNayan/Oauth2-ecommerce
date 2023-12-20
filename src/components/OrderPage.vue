@@ -151,7 +151,7 @@ export default {
       //       'Content-Type': 'application/json',
       //     },
       //   }
-      const res = await fetch("http://172.20.10.5:9002/orders/orders");
+      const res = await fetch("http://10.20.3.163:9002/orders/orders");
       const data = await res.json();
       console.log(data);
       orderResponse.value = data.resultData;
